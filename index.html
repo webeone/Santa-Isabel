@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Residencial Santa Isabel | San Isidro, Managua</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E0C06E;
+      --dark: #0C0F0D;
+      --dark-2: #141916;
+      --dark-3: #1C221E;
+      --green: #2D6A4F;
+      --green-light: #52B788;
+      --red: #E05555;
+      --orange: #E09B45;
+      --text-muted: rgba(255,255,255,0.55);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(12,15,13,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-main { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--gold); }
+    .nav-logo-sub { font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.4px; text-transform: uppercase; font-weight: 500; transition: color 0.25s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: #0C0F0D !important; padding: 9px 22px; border-radius: 5px; font-weight: 700 !important; }
+    .lang-toggle {
+      display: flex; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px; overflow: hidden; font-size: 0.74rem; font-weight: 600;
+    }
+    .lang-btn {
+      padding: 6px 14px; cursor: pointer; color: rgba(255,255,255,0.45);
+      transition: all 0.25s; border: none; background: transparent; font-family: inherit; font-size: inherit; font-weight: inherit;
+    }
+    .lang-btn.active { background: var(--gold); color: #0C0F0D; }
+    .lang-btn:hover:not(.active) { color: #fff; }
+
+    /* HAMBURGER */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: 0.3s; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background: url('img/vid1_05.jpg') center/cover no-repeat;
+    }
+    .hero-bg-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(155deg, rgba(12,15,13,0.92) 0%, rgba(16,24,19,0.82) 45%, rgba(12,15,13,0.88) 100%);
+    }
+    .hero-grid-overlay {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .hero-glow { position: absolute; top: 20%; right: 10%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(45,106,79,0.18) 0%, transparent 70%); border-radius: 50%; }
+    .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 130px 60px 90px; width: 100%; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.28); color: var(--gold);
+      padding: 7px 18px; border-radius: 100px; font-size: 0.76rem; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 32px; font-weight: 500;
+    }
+    .hero-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6.5vw, 5.2rem); font-weight: 900; line-height: 1.05; margin-bottom: 26px; max-width: 700px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.75; margin-bottom: 50px; font-weight: 300; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #0C0F0D; padding: 16px 34px; border-radius: 6px;
+      font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(201,168,76,0.32); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(255,255,255,0.22); color: #fff; padding: 16px 34px;
+      border-radius: 6px; font-weight: 500; font-size: 0.92rem; text-decoration: none; transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .scroll-hint { position: absolute; bottom: 44px; left: 60px; display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.3); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; }
+    .scroll-line { width: 52px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--gold); padding: 0 60px; }
+    .stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 28px 20px; text-align: center; border-right: 1px solid rgba(12,15,13,0.12); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 900; color: #0C0F0D; line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: rgba(12,15,13,0.62); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 5px; }
+
+    /* SHARED */
+    section { padding: 100px 60px; }
+    .section-max { max-width: 1200px; margin: 0 auto; }
+    .section-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.8vw, 2.9rem); font-weight: 700; line-height: 1.18; margin-bottom: 18px; }
+    .section-desc { color: var(--text-muted); line-height: 1.8; font-weight: 300; max-width: 580px; font-size: 1rem; }
+
+    /* ABOUT */
+    .about-sec { background: var(--dark-2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 20px; }
+    .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .feat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 22px 20px; transition: all 0.3s; }
+    .feat-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.04); transform: translateY(-3px); }
+    .feat-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .feat-title { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 5px; }
+    .feat-desc { font-size: 0.79rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .location-card { background: var(--dark-3); border: 1px solid rgba(201,168,76,0.18); border-radius: 18px; padding: 38px; position: relative; overflow: hidden; }
+    .location-card::before { content: ''; position: absolute; top: -40%; right: -20%; width: 260px; height: 260px; background: radial-gradient(circle, rgba(201,168,76,0.09) 0%, transparent 70%); pointer-events: none; }
+    .location-card-title { font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+    .loc-row { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .loc-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .loc-icon { width: 38px; height: 38px; background: rgba(201,168,76,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .loc-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .loc-text small { font-size: 0.76rem; color: rgba(255,255,255,0.45); }
+
+    /* GALLERY */
+    .gallery-sec { background: var(--dark); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+    .gallery-item {
+      position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 16/10; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.06); transition: all 0.35s;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover { border-color: rgba(201,168,76,0.3); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      font-size: 0.78rem; color: rgba(255,255,255,0.8); font-weight: 400;
+    }
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+      align-items: center; justify-content: center; cursor: pointer;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .lightbox-close {
+      position: absolute; top: 28px; right: 36px; font-size: 2rem; color: #fff; cursor: pointer;
+      background: none; border: none; font-family: inherit; opacity: 0.6; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* INFRASTRUCTURE */
+    .infra-sec { background: var(--dark-2); }
+    .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    .infra-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 34px 28px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .infra-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
+    .infra-card:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.2); }
+    .infra-card:hover::after { transform: scaleX(1); }
+    .infra-icon { width: 52px; height: 52px; background: rgba(201,168,76,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 20px; }
+    .infra-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    .infra-desc { font-size: 0.82rem; color: rgba(255,255,255,0.52); line-height: 1.7; }
+
+    /* LOT MAP */
+    .map-sec { background: var(--dark); }
+    .map-layout { display: grid; grid-template-columns: 1fr 355px; gap: 36px; margin-top: 56px; align-items: start; }
+    .svg-wrap { background: var(--dark-3); border: 1px solid rgba(201,168,76,0.14); border-radius: 16px; padding: 20px 20px 12px; }
+    .lot-svg { width: 100%; height: auto; display: block; }
+    .map-legend { display: flex; gap: 22px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.73rem; color: rgba(255,255,255,0.45); }
+    .legend-swatch { width: 16px; height: 16px; border-radius: 3px; }
+    /* SVG lot styles */
+    .lot-poly { fill: rgba(82,183,136,0.18); stroke: rgba(82,183,136,0.45); stroke-width: 1.5; cursor: pointer; transition: fill 0.2s, stroke 0.2s; }
+    .lot-poly:hover { fill: rgba(201,168,76,0.32); stroke: #C9A84C; stroke-width: 2; }
+    .lot-poly.active { fill: rgba(201,168,76,0.42); stroke: #C9A84C; stroke-width: 2.5; }
+    .lot-poly.sold { fill: rgba(224,85,85,0.15); stroke: rgba(224,85,85,0.4); cursor: default; }
+    .lot-poly.sold:hover { fill: rgba(224,85,85,0.22); stroke: rgba(224,85,85,0.55); }
+    .lot-poly.committed { fill: rgba(224,155,69,0.18); stroke: rgba(224,155,69,0.45); cursor: pointer; }
+    .lot-poly.committed:hover { fill: rgba(224,155,69,0.3); stroke: rgba(224,155,69,0.65); }
+    .lot-lbl { fill: rgba(255,255,255,0.85); font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 700; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+    .lot-lbl-area { fill: rgba(255,255,255,0.42); font-size: 8.5px; font-family: 'Inter', sans-serif; font-weight: 400; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+    /* Info panel */
+    .info-panel { background: var(--dark-3); border: 1px solid rgba(201,168,76,0.18); border-radius: 16px; padding: 30px 26px; }
+    .panel-idle { min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }
+    .panel-idle-icon { font-size: 2.4rem; opacity: 0.25; }
+    .panel-idle p { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+    .panel-detail { display: none; }
+    .panel-detail.show { display: block; }
+    .pd-tag { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+    .pd-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+    .pd-avail { display: inline-flex; align-items: center; gap: 6px; padding: 5px 13px; border-radius: 100px; font-size: 0.75rem; font-weight: 500; margin-bottom: 18px; }
+    .pd-avail.available { background: rgba(82,183,136,0.14); border: 1px solid rgba(82,183,136,0.28); color: #52B788; }
+    .pd-avail.available::before { content: ''; width: 5px; height: 5px; background: #52B788; border-radius: 50%; }
+    .pd-avail.sold { background: rgba(224,85,85,0.14); border: 1px solid rgba(224,85,85,0.28); color: var(--red); }
+    .pd-avail.sold::before { content: ''; width: 5px; height: 5px; background: var(--red); border-radius: 50%; }
+    .pd-avail.committed { background: rgba(224,155,69,0.14); border: 1px solid rgba(224,155,69,0.28); color: var(--orange); }
+    .pd-avail.committed::before { content: ''; width: 5px; height: 5px; background: var(--orange); border-radius: 50%; }
+    .pd-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .pd-spec { background: rgba(255,255,255,0.04); border-radius: 9px; padding: 13px; }
+    .pd-spec-lbl { font-size: 0.68rem; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pd-spec-val { font-size: 1rem; font-weight: 600; color: #fff; }
+    .pd-price-box { background: rgba(201,168,76,0.09); border: 1px solid rgba(201,168,76,0.22); border-radius: 11px; padding: 16px; text-align: center; margin-bottom: 14px; }
+    .pd-price-lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(201,168,76,0.65); margin-bottom: 4px; }
+    .pd-price-val { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+    .pd-price-note { font-size: 0.68rem; color: rgba(255,255,255,0.28); margin-top: 3px; }
+    .panel-buttons { display: flex; flex-direction: column; gap: 9px; }
+    .btn-wa { width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px; background: #25D366; color: #fff; padding: 13px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.3s; }
+    .btn-wa:hover { background: #1fb759; transform: translateY(-2px); }
+    .btn-pdf { width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 11px; border-radius: 8px; font-weight: 600; font-size: 0.84rem; text-decoration: none; transition: all 0.3s; }
+    .btn-pdf:hover { background: rgba(201,168,76,0.22); transform: translateY(-2px); }
+    .btn-pdf.disabled { opacity: 0.35; pointer-events: none; }
+    .btn-mosaico { width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); padding: 10px; border-radius: 8px; font-weight: 500; font-size: 0.8rem; text-decoration: none; transition: all 0.3s; margin-top: 4px; }
+    .btn-mosaico:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* PRICING SECTION */
+    .pricing-sec { background: var(--dark-2); }
+    .pricing-card {
+      max-width: 520px; margin: 44px auto 0; text-align: center;
+      background: var(--dark-3); border: 1px solid rgba(201,168,76,0.22); border-radius: 20px;
+      padding: 46px 40px; position: relative; overflow: hidden;
+    }
+    .pricing-card::before { content: ''; position: absolute; top: -50%; left: -20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%); pointer-events: none; }
+    .pricing-big { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900; color: var(--gold); line-height: 1; position: relative; }
+    .pricing-unit { font-size: 1rem; color: rgba(255,255,255,0.45); margin-top: 6px; font-weight: 400; }
+    .pricing-range { margin-top: 28px; display: flex; justify-content: center; gap: 36px; }
+    .pricing-range-item { text-align: center; }
+    .pricing-range-val { font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .pricing-range-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+    .pricing-note { margin-top: 24px; font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
+
+    /* TABLE */
+    .table-sec { background: var(--dark); }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .inv-table { width: 100%; border-collapse: collapse; margin-top: 44px; min-width: 720px; }
+    .inv-table th { text-align: left; font-size: 0.7rem; letter-spacing: 1.8px; text-transform: uppercase; color: var(--gold); padding: 13px 16px; border-bottom: 1px solid rgba(201,168,76,0.18); font-weight: 600; white-space: nowrap; }
+    .inv-table td { padding: 14px 16px; font-size: 0.85rem; color: rgba(255,255,255,0.72); border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
+    .inv-table tr:hover td { background: rgba(201,168,76,0.04); }
+    .td-lot-num { font-weight: 700; color: #fff; }
+    .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 100px; font-size: 0.72rem; font-weight: 500; white-space: nowrap; }
+    .status-badge.available { background: rgba(82,183,136,0.14); border: 1px solid rgba(82,183,136,0.25); color: #52B788; }
+    .status-badge.sold { background: rgba(224,85,85,0.14); border: 1px solid rgba(224,85,85,0.25); color: var(--red); }
+    .status-badge.committed { background: rgba(224,155,69,0.14); border: 1px solid rgba(224,155,69,0.25); color: var(--orange); }
+    .td-link { color: var(--gold); text-decoration: none; font-size: 0.78rem; font-weight: 500; white-space: nowrap; }
+    .td-link:hover { color: var(--gold-light); }
+    .td-link-pdf { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.78rem; white-space: nowrap; transition: color 0.2s; }
+    .td-link-pdf:hover { color: var(--gold); }
+    .td-link-pdf.na { opacity: 0.3; pointer-events: none; }
+
+    /* GOOGLE MAP */
+    .gmap-sec { background: var(--dark-2); }
+    .gmap-wrap {
+      margin-top: 44px; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.14); height: 420px;
+    }
+    .gmap-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.3) contrast(1.05); }
+
+    /* LEGAL */
+    .legal-sec { background: var(--dark); }
+    .legal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+    .legal-card { background: var(--dark-2); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 30px 26px; transition: border-color 0.3s; }
+    .legal-card:hover { border-color: rgba(201,168,76,0.25); }
+    .legal-icon { font-size: 1.9rem; margin-bottom: 14px; }
+    .legal-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .legal-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* CTA */
+    .cta-sec { background: var(--dark-3); text-align: center; padding: 120px 60px; position: relative; overflow: hidden; }
+    .cta-sec::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .cta-sec > * { position: relative; }
+    .cta-sec h2 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); margin-bottom: 14px; }
+    .cta-sec p { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto 44px; line-height: 1.7; }
+    .btn-wa-large { display: inline-flex; align-items: center; gap: 13px; background: #25D366; color: #fff; padding: 20px 48px; border-radius: 8px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: all 0.3s; }
+    .btn-wa-large:hover { background: #1fb759; transform: translateY(-3px); box-shadow: 0 18px 44px rgba(37,211,102,0.28); }
+    .cta-note { margin-top: 18px; font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+    /* FOOTER */
+    footer { background: #080A08; padding: 52px 60px 28px; border-top: 1px solid rgba(201,168,76,0.08); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 42px; }
+    .f-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 10px; }
+    .f-brand-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+    .f-desc { font-size: 0.83rem; color: rgba(255,255,255,0.38); line-height: 1.7; }
+    .footer-col h4 { font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.76rem; color: rgba(255,255,255,0.2); }
+
+    /* FLOATING WA */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 22px rgba(37,211,102,0.38); text-decoration: none; transition: transform 0.3s; animation: waPulse 3s ease-in-out infinite; }
+    .wa-float:hover { transform: scale(1.1); }
+    @keyframes waPulse { 0%,100% { box-shadow: 0 6px 22px rgba(37,211,102,0.38); } 50% { box-shadow: 0 6px 28px rgba(37,211,102,0.58); } }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      section { padding: 72px 24px; }
+      h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
+      .hero-content { padding: 100px 24px 70px; }
+      .scroll-hint { display: none; }
+      .stats-bar { padding: 0 24px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(12,15,13,0.12); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; }
+      .infra-grid { grid-template-columns: 1fr 1fr; }
+      .map-layout { grid-template-columns: 1fr; }
+      .legal-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 600px) {
+      .infra-grid { grid-template-columns: 1fr; }
+      .legal-grid { grid-template-columns: 1fr; }
+      .about-features { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: span 1; grid-row: span 1; }
+      .pricing-range { flex-direction: column; gap: 16px; }
+      .gmap-wrap { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING WA -->
+  <a href="https://wa.me/50588820218" target="_blank" class="wa-float" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span class="nav-logo-main">Santa Isabel</span>
+      <span class="nav-logo-sub">Nous Investments Group</span>
+    </div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#proyecto" data-i18n="nav_project">El Proyecto</a></li>
+        <li><a href="#galeria" data-i18n="nav_gallery">Galería</a></li>
+        <li><a href="#infraestructura" data-i18n="nav_infra">Infraestructura</a></li>
+        <li><a href="#lotes" data-i18n="nav_lots">Lotes</a></li>
+        <li><a href="#legal" data-i18n="nav_legal">Legal</a></li>
+        <li><a href="https://wa.me/50588820218" class="nav-cta" target="_blank" data-i18n="nav_contact">Contactar</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-img"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        <span data-i18n="hero_eyebrow">10 Lotes Disponibles · San Isidro, Managua</span>
+      </div>
+      <h1 data-i18n="hero_title">Vive en las<br>Alturas de<br><em>Santa Isabel</em></h1>
+      <p class="hero-desc" data-i18n="hero_desc">
+        Lotes residenciales premium en las colinas de San Isidro con infraestructura completa, ambiente exclusivo y una inversión respaldada por 35 años de historial registral limpio.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/50588820218?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20lotes%20de%20Residencial%20Santa%20Isabel." class="btn-primary" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="hero_cta">Consultar por WhatsApp</span>
+        </a>
+        <a href="#lotes" class="btn-ghost"><span data-i18n="hero_lots_cta">Ver Lotes Disponibles →</span></a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span data-i18n="hero_scroll">Descubrir</span>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-number">10</div><div class="stat-label" data-i18n="stat_lots">Lotes Disponibles</div></div>
+      <div class="stat-item"><div class="stat-number">$60</div><div class="stat-label" data-i18n="stat_price">USD por Vara²</div></div>
+      <div class="stat-item"><div class="stat-number">$259K+</div><div class="stat-label" data-i18n="stat_infra">Inversión en Infraestructura</div></div>
+      <div class="stat-item"><div class="stat-number">35</div><div class="stat-label" data-i18n="stat_years">Años Historial Registral</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-sec" id="proyecto">
+    <div class="section-max">
+      <div class="about-grid">
+        <div>
+          <span class="section-tag" data-i18n="about_tag">El Proyecto</span>
+          <h2 data-i18n="about_title">Un Refugio Exclusivo en las Colinas de Managua</h2>
+          <p class="section-desc" data-i18n="about_desc">Residencial Santa Isabel es un desarrollo habitacional de alta plusvalía situado en Comarca San Isidro, a solo 3.2 km del Club Terraza y minutos del Intermezzo del Bosque. Un entorno natural privilegiado con todo el acceso a la ciudad.</p>
+          <div class="about-features">
+            <div class="feat-card fade-in"><div class="feat-icon">🏔️</div><div class="feat-title" data-i18n="feat1_title">Clima Excepcional</div><div class="feat-desc" data-i18n="feat1_desc">Zona montañosa fresca con atmósfera tranquila y vistas panorámicas todo el año.</div></div>
+            <div class="feat-card fade-in"><div class="feat-icon">🛣️</div><div class="feat-title" data-i18n="feat2_title">Doble Acceso</div><div class="feat-desc" data-i18n="feat2_desc">Acceso principal por Intermezzo del Bosque y secundario por San Isidro de la Cruz Verde.</div></div>
+            <div class="feat-card fade-in"><div class="feat-icon">🌿</div><div class="feat-title" data-i18n="feat3_title">Alta Plusvalía</div><div class="feat-desc" data-i18n="feat3_desc">Zona de apreciación continua, frente al Reparto Montecarlo, cerca de los mejores clubs de Managua.</div></div>
+            <div class="feat-card fade-in"><div class="feat-icon">🏗️</div><div class="feat-title" data-i18n="feat4_title">Listo para Construir</div><div class="feat-desc" data-i18n="feat4_desc">Infraestructura 100% instalada. Empieza a construir tu hogar desde el primer día.</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="location-card">
+            <div class="location-card-title" data-i18n="loc_title">Detalles de Ubicación</div>
+            <div class="loc-row"><div class="loc-icon">📍</div><div class="loc-text"><strong data-i18n="loc1_title">Comarca San Isidro, Managua</strong><small data-i18n="loc1_sub">Comarca San Isidro de la Cruz Verde, Municipio Managua</small></div></div>
+            <div class="loc-row"><div class="loc-icon">🎾</div><div class="loc-text"><strong data-i18n="loc2_title">3.2 km del Club Terraza</strong><small data-i18n="loc2_sub">Zona residencial de máximo prestigio</small></div></div>
+            <div class="loc-row"><div class="loc-icon">🌳</div><div class="loc-text"><strong data-i18n="loc3_title">Acceso vía Intermezzo del Bosque</strong><small data-i18n="loc3_sub">Acceso principal pavimentado y seguro</small></div></div>
+            <div class="loc-row"><div class="loc-icon">🏘️</div><div class="loc-text"><strong data-i18n="loc4_title">Frente al Reparto Montecarlo</strong><small data-i18n="loc4_sub">Entorno residencial consolidado</small></div></div>
+            <div class="loc-row"><div class="loc-icon">🗺️</div><div class="loc-text"><strong>Num. Cat.: 2952-3-12-000-20202</strong><small>Sistema UTM WGS 84 (Zona 16N) · Lic. Cat. JML010069</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-sec" id="galeria">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="gallery_tag">Galería</span>
+      <h2 data-i18n="gallery_title">Conoce Santa Isabel</h2>
+      <p class="section-desc" data-i18n="gallery_desc">Vistas aéreas y panorámicas del desarrollo, su infraestructura y entorno natural privilegiado.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('img/vid1_05.jpg')">
+          <img src="img/vid1_05.jpg" alt="Vista panorámica de Managua" loading="lazy">
+          <div class="gallery-caption" data-i18n="gal1_cap">Vista panorámica del área de San Isidro</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('img/vid1_03.jpg')">
+          <img src="img/vid1_03.jpg" alt="Vista aérea del desarrollo" loading="lazy">
+          <div class="gallery-caption" data-i18n="gal2_cap">Vista aérea del terreno</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('img/vid1_06.jpg')">
+          <img src="img/vid1_06.jpg" alt="Calles adoquinadas" loading="lazy">
+          <div class="gallery-caption" data-i18n="gal3_cap">Calles adoquinadas internas</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('img/vid1_02.jpg')">
+          <img src="img/vid1_02.jpg" alt="Acceso al desarrollo" loading="lazy">
+          <div class="gallery-caption" data-i18n="gal4_cap">Accesos al desarrollo</div>
+        </div>
+        <div class="gallery-item" onclick="openLightbox('img/vid1_04.jpg')">
+          <img src="img/vid1_04.jpg" alt="Colinas verdes" loading="lazy">
+          <div class="gallery-caption" data-i18n="gal5_cap">Entorno natural de colinas verdes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE -->
+  <section class="infra-sec" id="infraestructura">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="infra_tag">Infraestructura</span>
+      <h2 data-i18n="infra_title">Listo para Construir.<br>Todo Incluido.</h2>
+      <p class="section-desc" data-i18n="infra_desc">Más de $259,700 USD invertidos entre 2007 y 2009. Cada lote tiene acceso directo a todos los servicios esenciales desde el primer día.</p>
+      <div class="infra-grid">
+        <div class="infra-card fade-in"><div class="infra-icon">🛣️</div><div class="infra-title" data-i18n="infra1_title">Calles Adoquinadas</div><div class="infra-desc" data-i18n="infra1_desc">Vías internas de 7 metros de ancho totalmente adoquinadas con andenes de 2.5m a cada lado. Construidas para durar décadas.</div></div>
+        <div class="infra-card fade-in"><div class="infra-icon">💧</div><div class="infra-title" data-i18n="infra2_title">Agua Potable</div><div class="infra-desc" data-i18n="infra2_desc">Conexión individual a la red de ENACAL en cada lote. Tanques estratégicamente posicionados garantizan el suministro continuo.</div></div>
+        <div class="infra-card fade-in"><div class="infra-icon">⚡</div><div class="infra-title" data-i18n="infra3_title">Red Eléctrica Completa</div><div class="infra-desc" data-i18n="infra3_desc">Electrificación instalada en todo el desarrollo. Conexión directa al tendido eléctrico disponible desde el día uno.</div></div>
+        <div class="infra-card fade-in"><div class="infra-icon">🔒</div><div class="infra-title" data-i18n="infra4_title">Caseta de Seguridad</div><div class="infra-desc" data-i18n="infra4_desc">Caseta de entrada profesional con control de acceso vehicular y peatonal para total privacidad de los residentes.</div></div>
+        <div class="infra-card fade-in"><div class="infra-icon">🌊</div><div class="infra-title" data-i18n="infra5_title">Drenaje Pluvial</div><div class="infra-desc" data-i18n="infra5_desc">16 pozos de absorción estratégicos para gestión efectiva de aguas pluviales. Ingeniería de primer nivel anti-inundaciones.</div></div>
+        <div class="infra-card fade-in"><div class="infra-icon">📐</div><div class="infra-title" data-i18n="infra6_title">Terreno Preparado</div><div class="infra-desc" data-i18n="infra6_desc">Descapote, corte, relleno, compactación y nivelación completados. Sin costos adicionales de preparación del sitio.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-sec" id="precios">
+    <div class="section-max" style="text-align:center">
+      <span class="section-tag" data-i18n="pricing_tag">Inversión</span>
+      <h2 data-i18n="pricing_title">Precio por Vara Cuadrada</h2>
+      <p class="section-desc" data-i18n="pricing_desc" style="margin: 0 auto">Precio uniforme por vara cuadrada para todos los lotes disponibles. Lotes desde 1,753 m² hasta 3,080 m².</p>
+      <div class="pricing-card">
+        <div class="pricing-big">$60 <span style="font-size:1rem;color:rgba(255,255,255,0.5)">USD</span></div>
+        <div class="pricing-unit" data-i18n="pricing_unit">por vara cuadrada (vrs²)</div>
+        <div class="pricing-range">
+          <div class="pricing-range-item">
+            <div class="pricing-range-val">$149,174</div>
+            <div class="pricing-range-lbl" data-i18n="pricing_from">Desde</div>
+          </div>
+          <div class="pricing-range-item">
+            <div class="pricing-range-val">$262,092</div>
+            <div class="pricing-range-lbl" data-i18n="pricing_to">Hasta</div>
+          </div>
+          <div class="pricing-range-item">
+            <div class="pricing-range-val">10</div>
+            <div class="pricing-range-lbl" data-i18n="pricing_avail">Disponibles</div>
+          </div>
+        </div>
+        <p class="pricing-note" data-i18n="pricing_note">Precios en dólares americanos · Escritura inmediata · Consultar opciones de financiamiento</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOT MAP -->
+  <section class="map-sec" id="lotes">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="lots_tag">Inventario de Lotes</span>
+      <h2 data-i18n="lots_title">Selecciona Tu Lote Ideal</h2>
+      <p class="section-desc" data-i18n="lots_desc">Haz clic en cualquier lote del mapa para ver especificaciones, precio y descargar su plano legal certificado.</p>
+
+      <div class="map-layout">
+        <!-- SVG Map -->
+        <div class="svg-wrap">
+          <svg class="lot-svg" viewBox="0 0 780 570" xmlns="http://www.w3.org/2000/svg">
+            <rect width="780" height="570" fill="#161C18" rx="6"/>
+            <polygon points="30,30 750,30 750,545 30,545" fill="rgba(8,12,10,0.4)" stroke="rgba(201,168,76,0.16)" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+            <!-- TOP ROW -->
+            <polygon class="lot-poly" data-lot="14" points="36,36 178,36 178,150 36,150"/>
+            <text class="lot-lbl" x="107" y="87">14</text>
+            <text class="lot-lbl-area" x="107" y="104">1,799 m²</text>
+
+            <polygon class="lot-poly" data-lot="13" points="185,36 322,36 322,150 185,150"/>
+            <text class="lot-lbl" x="253" y="87">13</text>
+            <text class="lot-lbl-area" x="253" y="104">2,113 m²</text>
+
+            <polygon class="lot-poly" data-lot="12" points="329,36 465,36 465,150 329,150"/>
+            <text class="lot-lbl" x="397" y="87">12</text>
+            <text class="lot-lbl-area" x="397" y="104">2,008 m²</text>
+
+            <polygon class="lot-poly" data-lot="11" points="472,36 591,36 591,150 472,150"/>
+            <text class="lot-lbl" x="531" y="87">11</text>
+            <text class="lot-lbl-area" x="531" y="104">1,757 m²</text>
+
+            <polygon class="lot-poly" data-lot="10" points="598,36 744,36 744,150 598,150"/>
+            <text class="lot-lbl" x="671" y="87">10</text>
+            <text class="lot-lbl-area" x="671" y="104">1,753 m²</text>
+
+            <!-- Road -->
+            <rect x="30" y="150" width="720" height="18" fill="rgba(15,22,18,0.95)"/>
+            <line x1="30" y1="159" x2="750" y2="159" stroke="rgba(201,168,76,0.1)" stroke-width="1" stroke-dasharray="8,6"/>
+
+            <!-- LEFT COLUMN -->
+            <polygon class="lot-poly" data-lot="15" points="36,168 172,168 172,278 36,278"/>
+            <text class="lot-lbl" x="104" y="217">15</text>
+            <text class="lot-lbl-area" x="104" y="234">1,954 m²</text>
+
+            <polygon class="lot-poly" data-lot="2" points="36,285 170,285 170,400 36,400"/>
+            <text class="lot-lbl" x="103" y="336">2</text>
+            <text class="lot-lbl-area" x="103" y="353">1,857 m²</text>
+
+            <polygon class="lot-poly" data-lot="1" points="36,407 166,407 166,520 36,520"/>
+            <text class="lot-lbl" x="101" y="457">1</text>
+            <text class="lot-lbl-area" x="101" y="474">1,872 m²</text>
+
+            <!-- Vertical road -->
+            <rect x="172" y="168" width="16" height="352" fill="rgba(15,22,18,0.95)"/>
+            <line x1="180" y1="168" x2="180" y2="520" stroke="rgba(201,168,76,0.1)" stroke-width="1" stroke-dasharray="7,5"/>
+
+            <!-- CENTER BLOCK -->
+            <polygon class="lot-poly" data-lot="3" points="188,168 322,168 322,285 188,285"/>
+            <text class="lot-lbl" x="255" y="220">3</text>
+            <text class="lot-lbl-area" x="255" y="237">1,755 m²</text>
+
+            <polygon class="lot-poly" data-lot="4" points="329,168 460,168 460,285 329,285"/>
+            <text class="lot-lbl" x="394" y="220">4</text>
+            <text class="lot-lbl-area" x="394" y="237">1,764 m²</text>
+
+            <rect x="188" y="285" width="272" height="16" fill="rgba(15,22,18,0.95)"/>
+            <line x1="188" y1="293" x2="460" y2="293" stroke="rgba(201,168,76,0.1)" stroke-width="1" stroke-dasharray="7,5"/>
+
+            <polygon class="lot-poly" data-lot="5" points="188,301 322,301 322,418 188,418"/>
+            <text class="lot-lbl" x="255" y="353">5</text>
+            <text class="lot-lbl-area" x="255" y="370">1,976 m²</text>
+
+            <polygon class="lot-poly" data-lot="6" points="329,301 460,301 460,418 329,418"/>
+            <text class="lot-lbl" x="394" y="353">6</text>
+            <text class="lot-lbl-area" x="394" y="370">1,795 m²</text>
+
+            <rect x="188" y="418" width="272" height="16" fill="rgba(15,22,18,0.95)"/>
+            <rect x="188" y="434" width="272" height="96" fill="rgba(8,12,10,0.5)" stroke="rgba(201,168,76,0.06)" stroke-width="1"/>
+            <text x="324" y="478" fill="rgba(201,168,76,0.2)" font-size="8" font-family="Inter" font-weight="600" text-anchor="middle" letter-spacing="1">ÁREA VIAL</text>
+
+            <!-- Vertical road right -->
+            <rect x="460" y="168" width="16" height="350" fill="rgba(15,22,18,0.95)"/>
+            <line x1="468" y1="168" x2="468" y2="518" stroke="rgba(201,168,76,0.1)" stroke-width="1" stroke-dasharray="7,5"/>
+
+            <!-- RIGHT CLUSTER -->
+            <polygon class="lot-poly" data-lot="9" points="476,168 598,168 598,290 476,290"/>
+            <text class="lot-lbl" x="537" y="222">9</text>
+            <text class="lot-lbl-area" x="537" y="239">1,772 m²</text>
+
+            <rect x="598" y="168" width="14" height="122" fill="rgba(15,22,18,0.95)"/>
+
+            <polygon class="lot-poly" data-lot="7" points="476,297 730,297 730,520 476,520"/>
+            <text class="lot-lbl" x="603" y="398">7</text>
+            <text class="lot-lbl-area" x="603" y="418">3,080 m² · Lote Mayor</text>
+
+            <polygon class="lot-poly" data-lot="8" points="612,168 744,168 744,290 612,290"/>
+            <text class="lot-lbl" x="678" y="222">8</text>
+            <text class="lot-lbl-area" x="678" y="239">2,417 m²</text>
+
+            <!-- Decorations -->
+            <g transform="translate(101,534)">
+              <polygon points="-12,0 12,0 0,-18" fill="#C9A84C" opacity="0.55"/>
+              <text x="0" y="10" fill="#C9A84C" font-size="6.5" font-family="Inter" font-weight="700" text-anchor="middle" letter-spacing="1.2">ACCESO PRINCIPAL</text>
+            </g>
+            <g transform="translate(736,510)">
+              <circle cx="0" cy="0" r="20" fill="rgba(0,0,0,0.55)" stroke="rgba(201,168,76,0.28)" stroke-width="1"/>
+              <text x="0" y="-6" fill="rgba(201,168,76,0.85)" font-size="7.5" font-family="Inter" font-weight="800" text-anchor="middle">N</text>
+              <polygon points="0,-14 2.5,-5 0,-2 -2.5,-5" fill="#C9A84C" opacity="0.85"/>
+              <polygon points="0,14 2.5,5 0,2 -2.5,5" fill="rgba(255,255,255,0.18)"/>
+            </g>
+            <text x="395" y="558" fill="rgba(201,168,76,0.3)" font-size="7" font-family="Inter" text-anchor="middle" letter-spacing="0.5">Representación esquemática — Manzana 1 · Lotificación Santa Isabel · Esc. aprox. 1:600</text>
+          </svg>
+
+          <div class="map-legend">
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:rgba(82,183,136,0.22);border:1px solid rgba(82,183,136,0.5)"></div>
+              <span data-i18n="legend_available">Disponible</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:rgba(224,85,85,0.2);border:1px solid rgba(224,85,85,0.5)"></div>
+              <span data-i18n="legend_sold">Vendido</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:rgba(224,155,69,0.2);border:1px solid rgba(224,155,69,0.5)"></div>
+              <span data-i18n="legend_committed">Comprometido</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-swatch" style="background:rgba(201,168,76,0.42);border:1px solid #C9A84C"></div>
+              <span data-i18n="legend_selected">Seleccionado</span>
+            </div>
+            <div class="legend-item">
+              <a href="mosaico.pdf" download="Mosaico-Santa-Isabel.pdf" style="color:rgba(201,168,76,0.6);font-size:0.73rem;text-decoration:none;">
+                📄 <span data-i18n="legend_mosaico">Descargar Plano Mosaico</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info panel -->
+        <div class="info-panel" id="infoPanel">
+          <div class="panel-idle" id="panelIdle">
+            <div class="panel-idle-icon">🗺️</div>
+            <p data-i18n="panel_idle">Selecciona un lote en el mapa para ver especificaciones, precio y plano legal</p>
+          </div>
+          <div class="panel-detail" id="panelDetail">
+            <div class="pd-tag" id="pdTag">Lote · Manzana 1</div>
+            <div class="pd-name">Residencial<br>Santa Isabel</div>
+            <div class="pd-avail" id="pdAvail"></div>
+            <div class="pd-specs">
+              <div class="pd-spec">
+                <div class="pd-spec-lbl">Área (m²)</div>
+                <div class="pd-spec-val" id="pdAreaM">—</div>
+              </div>
+              <div class="pd-spec">
+                <div class="pd-spec-lbl">Área (vrs²)</div>
+                <div class="pd-spec-val" id="pdAreaV">—</div>
+              </div>
+            </div>
+            <div class="pd-price-box">
+              <div class="pd-price-lbl" data-i18n="panel_price_lbl">Precio del Lote</div>
+              <div class="pd-price-val" id="pdPrice">—</div>
+              <div class="pd-price-note" id="pdPriceNote"></div>
+            </div>
+            <div class="panel-buttons">
+              <a href="#" class="btn-wa" id="pdWaBtn" target="_blank">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span data-i18n="panel_wa_btn">Consultar este Lote</span>
+              </a>
+              <a href="#" class="btn-pdf" id="pdPdfBtn" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,17L7,14H9V11H11V14H13L10,17Z"/></svg>
+                <span data-i18n="panel_pdf_btn">Descargar Plano Legal</span>
+              </a>
+              <a href="mosaico.pdf" download="Mosaico-Santa-Isabel.pdf" class="btn-mosaico">
+                📄 <span data-i18n="panel_mosaico_btn">Ver Plano Mosaico General</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTORY TABLE -->
+  <section class="table-sec">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="table_tag">Inventario Completo</span>
+      <h2 data-i18n="table_title">Todos los Lotes · Manzana 1</h2>
+      <p class="section-desc" data-i18n="table_desc">Medidas oficiales según plano de lotificación firmado por Lic. Cat. José Manuel López Prado. Fecha: 01 de febrero de 2017.</p>
+      <div class="table-wrap">
+        <table class="inv-table">
+          <thead>
+            <tr>
+              <th data-i18n="th_lot">Lote</th>
+              <th data-i18n="th_area_m">Área (m²)</th>
+              <th data-i18n="th_area_v">Área (vrs²)</th>
+              <th data-i18n="th_price_v">$/vrs²</th>
+              <th data-i18n="th_total">Precio Total</th>
+              <th data-i18n="th_status">Estado</th>
+              <th data-i18n="th_plan">Plano Legal</th>
+              <th data-i18n="th_contact">Contacto</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAP -->
+  <section class="gmap-sec" id="ubicacion">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="gmap_tag">Ubicación</span>
+      <h2 data-i18n="gmap_title">Encuéntranos en el Mapa</h2>
+      <p class="section-desc" data-i18n="gmap_desc">Comarca San Isidro de la Cruz Verde, Managua. A 3.2 km del Club Terraza y minutos del Intermezzo del Bosque.</p>
+      <div class="gmap-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3902.5!2d-86.33135!3d12.27556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDE2JzMyLjAiTiA4NsKwMTknNTIuOSJX!5e0!3m2!1ses!2sni!4v1700000000000!5m2!1ses!2sni" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGAL -->
+  <section class="legal-sec" id="legal">
+    <div class="section-max">
+      <span class="section-tag" data-i18n="legal_tag">Seguridad Jurídica</span>
+      <h2 data-i18n="legal_title">Tu Inversión,<br>Completamente Protegida</h2>
+      <p class="section-desc" data-i18n="legal_desc">Santa Isabel cuenta con el más sólido respaldo legal del mercado. Compra con total tranquilidad y certeza jurídica.</p>
+      <div class="legal-grid">
+        <div class="legal-card fade-in"><div class="legal-icon">📋</div><div class="legal-title" data-i18n="legal1_title">Finca Registrada</div><div class="legal-desc" data-i18n="legal1_desc">Finca No. 175,308 inscrita en el Registro Público de Managua, Tomo 2428, Folios 118/119. Historial registral ininterrumpido de 35 años.</div></div>
+        <div class="legal-card fade-in"><div class="legal-icon">✅</div><div class="legal-title" data-i18n="legal2_title">Libre de Gravámenes</div><div class="legal-desc" data-i18n="legal2_desc">Propiedad con historial limpio y completamente libre de hipotecas, gravámenes o cargas legales de cualquier tipo.</div></div>
+        <div class="legal-card fade-in"><div class="legal-icon">🏢</div><div class="legal-title" data-i18n="legal3_title">Propietario Identificado</div><div class="legal-desc" data-i18n="legal3_desc">Industrial Agropecuaria Santa Isabel S.A. (RUC: J0310009243301). Empresa formalmente constituida y verificable ante cualquier registro.</div></div>
+        <div class="legal-card fade-in"><div class="legal-icon">🔗</div><div class="legal-title" data-i18n="legal4_title">Historia Registral Clara</div><div class="legal-desc" data-i18n="legal4_desc">Consolidada de Fincas originales 124,175 · 184,215 · 106,755. Trazabilidad completa y documentada del historial de la propiedad.</div></div>
+        <div class="legal-card fade-in"><div class="legal-icon">📐</div><div class="legal-title" data-i18n="legal5_title">Planos Certificados</div><div class="legal-desc" data-i18n="legal5_desc">Plano de lotificación oficial firmado por Lic. Cat. José Manuel López Prado (JML010069). Coordenadas UTM WGS 84 (Zona 16N) certificadas.</div></div>
+        <div class="legal-card fade-in"><div class="legal-icon">💰</div><div class="legal-title" data-i18n="legal6_title">Inversión Documentada</div><div class="legal-desc" data-i18n="legal6_desc">Más de $259,700 USD de infraestructura documentada (2007–2009). Descapote, corte, relleno, compactación y pavimentación completados.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <h2 data-i18n="cta_title">¿Listo para Invertir en <em style="color:var(--gold);font-style:italic">Santa Isabel</em>?</h2>
+    <p data-i18n="cta_desc">Quedan solo 10 lotes disponibles. Escríbenos por WhatsApp y un asesor te contactará de inmediato con toda la información.</p>
+    <a href="https://wa.me/50588820218?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20lotes%20de%20Residencial%20Santa%20Isabel." class="btn-wa-large" target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span data-i18n="cta_btn">Escribir por WhatsApp</span>
+    </a>
+    <p class="cta-note">+505 8882 0218 · <span data-i18n="cta_note">Respuesta inmediata</span></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="f-brand">Residencial Santa Isabel</div>
+          <div class="f-brand-sub">Nous Investments Group</div>
+          <p class="f-desc" data-i18n="footer_desc">Desarrollo residencial premium en las colinas de San Isidro, Managua. Lotes con infraestructura completa, respaldo legal sólido y entorno natural privilegiado. Finca No. 175,308 · Registro Público de Managua.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Navegación</h4>
+          <ul>
+            <li><a href="#proyecto" data-i18n="nav_project">El Proyecto</a></li>
+            <li><a href="#galeria" data-i18n="nav_gallery">Galería</a></li>
+            <li><a href="#infraestructura" data-i18n="nav_infra">Infraestructura</a></li>
+            <li><a href="#lotes" data-i18n="nav_lots">Lotes Disponibles</a></li>
+            <li><a href="#legal" data-i18n="nav_legal">Seguridad Legal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact">Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/50588820218" target="_blank">+505 8882 0218</a></li>
+            <li><a href="https://wa.me/50588820218" target="_blank">WhatsApp</a></li>
+            <li><a href="mosaico.pdf" download>Plano Mosaico (PDF)</a></li>
+            <li><a href="#ubicacion" data-i18n="footer_location">Ubicación</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Residencial Santa Isabel · Nous Investments Group · Managua, Nicaragua</p>
+        <p>Num. Cat.: 2952-3-12-000-20202</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ═══════════════════════════════════════════
+    // LOT DATA — from official Plano Mosaico + pricing PDF
+    // Lotificación Santa Isabel, Lic. Cat. JML010069
+    // ═══════════════════════════════════════════
+    const lots = [
+      { id: 1,  area: 1872.284, vrs: 2655.676, priceVrs: 90,  status: 'committed', pdf: 'lote-1.pdf'  },
+      { id: 2,  area: 1856.546, vrs: 2633.353, priceVrs: 60,  status: 'available',  pdf: 'lote-2.pdf'  },
+      { id: 3,  area: 1754.653, vrs: 2488.826, priceVrs: 60,  status: 'sold',       pdf: 'lote-3.pdf'  },
+      { id: 4,  area: 1764.131, vrs: 2502.270, priceVrs: 60,  status: 'sold',       pdf: 'lote-4.pdf'  },
+      { id: 5,  area: 1975.834, vrs: 2802.553, priceVrs: 60,  status: 'sold',       pdf: 'lote-5.pdf'  },
+      { id: 6,  area: 1795.328, vrs: 2546.520, priceVrs: 60,  status: 'sold',       pdf: 'lote-6.pdf'  },
+      { id: 7,  area: 3079.638, vrs: 4368.205, priceVrs: 60,  status: 'available',  pdf: null           },
+      { id: 8,  area: 2416.775, vrs: 3427.990, priceVrs: 60,  status: 'available',  pdf: 'lote-8.pdf'  },
+      { id: 9,  area: 1771.746, vrs: 2513.071, priceVrs: 60,  status: 'available',  pdf: 'lote-9.pdf'  },
+      { id: 10, area: 1752.827, vrs: 2486.236, priceVrs: 60,  status: 'available',  pdf: null           },
+      { id: 11, area: 1757.421, vrs: 2492.752, priceVrs: 60,  status: 'available',  pdf: 'lote-11.pdf' },
+      { id: 12, area: 2007.790, vrs: 2847.879, priceVrs: 60,  status: 'available',  pdf: 'lote-12.pdf' },
+      { id: 13, area: 2112.624, vrs: 2996.578, priceVrs: 60,  status: 'available',  pdf: 'lote-13.pdf' },
+      { id: 14, area: 1799.092, vrs: 2551.859, priceVrs: 60,  status: 'available',  pdf: 'lote-14.pdf' },
+      { id: 15, area: 1954.149, vrs: 2771.794, priceVrs: 60,  status: 'available',  pdf: 'lote-15.pdf' },
+    ];
+
+    // ═══════════════════════════════════════════
+    // i18n — Bilingual support ES/EN
+    // ═══════════════════════════════════════════
+    let currentLang = 'es';
+
+    const i18n = {
+      // Nav
+      nav_project:   { es: 'El Proyecto',      en: 'The Project' },
+      nav_gallery:   { es: 'Galería',           en: 'Gallery' },
+      nav_infra:     { es: 'Infraestructura',   en: 'Infrastructure' },
+      nav_lots:      { es: 'Lotes',             en: 'Lots' },
+      nav_legal:     { es: 'Legal',             en: 'Legal' },
+      nav_contact:   { es: 'Contactar',         en: 'Contact' },
+      // Hero
+      hero_eyebrow:  { es: '10 Lotes Disponibles · San Isidro, Managua', en: '10 Lots Available · San Isidro, Managua' },
+      hero_title:    { es: 'Vive en las<br>Alturas de<br><em>Santa Isabel</em>', en: 'Live in the<br>Heights of<br><em>Santa Isabel</em>' },
+      hero_desc:     { es: 'Lotes residenciales premium en las colinas de San Isidro con infraestructura completa, ambiente exclusivo y una inversión respaldada por 35 años de historial registral limpio.', en: 'Premium residential lots in the hills of San Isidro with complete infrastructure, exclusive environment and an investment backed by 35 years of clean registry history.' },
+      hero_cta:      { es: 'Consultar por WhatsApp', en: 'Inquire via WhatsApp' },
+      hero_lots_cta: { es: 'Ver Lotes Disponibles →', en: 'View Available Lots →' },
+      hero_scroll:   { es: 'Descubrir', en: 'Discover' },
+      // Stats
+      stat_lots:     { es: 'Lotes Disponibles', en: 'Lots Available' },
+      stat_price:    { es: 'USD por Vara²',     en: 'USD per Vara²' },
+      stat_infra:    { es: 'Inversión en Infraestructura', en: 'Infrastructure Investment' },
+      stat_years:    { es: 'Años Historial Registral', en: 'Years Registry History' },
+      // About
+      about_tag:     { es: 'El Proyecto',       en: 'The Project' },
+      about_title:   { es: 'Un Refugio Exclusivo en las Colinas de Managua', en: 'An Exclusive Retreat in the Managua Hills' },
+      about_desc:    { es: 'Residencial Santa Isabel es un desarrollo habitacional de alta plusvalía situado en Comarca San Isidro, a solo 3.2 km del Club Terraza y minutos del Intermezzo del Bosque. Un entorno natural privilegiado con todo el acceso a la ciudad.', en: 'Residencial Santa Isabel is a high-value residential development located in Comarca San Isidro, just 3.2 km from Club Terraza and minutes from Intermezzo del Bosque. A privileged natural setting with full access to the city.' },
+      feat1_title:   { es: 'Clima Excepcional',   en: 'Exceptional Climate' },
+      feat1_desc:    { es: 'Zona montañosa fresca con atmósfera tranquila y vistas panorámicas todo el año.', en: 'Cool mountain zone with peaceful atmosphere and year-round panoramic views.' },
+      feat2_title:   { es: 'Doble Acceso',        en: 'Dual Access' },
+      feat2_desc:    { es: 'Acceso principal por Intermezzo del Bosque y secundario por San Isidro de la Cruz Verde.', en: 'Main access via Intermezzo del Bosque and secondary via San Isidro de la Cruz Verde.' },
+      feat3_title:   { es: 'Alta Plusvalía',       en: 'High Appreciation' },
+      feat3_desc:    { es: 'Zona de apreciación continua, frente al Reparto Montecarlo, cerca de los mejores clubs de Managua.', en: 'Continuous appreciation zone, facing Reparto Montecarlo, near Managua\'s best clubs.' },
+      feat4_title:   { es: 'Listo para Construir', en: 'Ready to Build' },
+      feat4_desc:    { es: 'Infraestructura 100% instalada. Empieza a construir tu hogar desde el primer día.', en: '100% installed infrastructure. Start building your home from day one.' },
+      loc_title:     { es: 'Detalles de Ubicación', en: 'Location Details' },
+      loc1_title:    { es: 'Comarca San Isidro, Managua', en: 'Comarca San Isidro, Managua' },
+      loc1_sub:      { es: 'Comarca San Isidro de la Cruz Verde, Municipio Managua', en: 'Comarca San Isidro de la Cruz Verde, Municipality of Managua' },
+      loc2_title:    { es: '3.2 km del Club Terraza', en: '3.2 km from Club Terraza' },
+      loc2_sub:      { es: 'Zona residencial de máximo prestigio', en: 'Premium residential zone' },
+      loc3_title:    { es: 'Acceso vía Intermezzo del Bosque', en: 'Access via Intermezzo del Bosque' },
+      loc3_sub:      { es: 'Acceso principal pavimentado y seguro', en: 'Main paved and secure access' },
+      loc4_title:    { es: 'Frente al Reparto Montecarlo', en: 'Facing Reparto Montecarlo' },
+      loc4_sub:      { es: 'Entorno residencial consolidado', en: 'Established residential environment' },
+      // Gallery
+      gallery_tag:   { es: 'Galería', en: 'Gallery' },
+      gallery_title: { es: 'Conoce Santa Isabel', en: 'Discover Santa Isabel' },
+      gallery_desc:  { es: 'Vistas aéreas y panorámicas del desarrollo, su infraestructura y entorno natural privilegiado.', en: 'Aerial and panoramic views of the development, its infrastructure and privileged natural environment.' },
+      gal1_cap:      { es: 'Vista panorámica del área de San Isidro', en: 'Panoramic view of the San Isidro area' },
+      gal2_cap:      { es: 'Vista aérea del terreno', en: 'Aerial view of the property' },
+      gal3_cap:      { es: 'Calles adoquinadas internas', en: 'Internal cobblestone roads' },
+      gal4_cap:      { es: 'Accesos al desarrollo', en: 'Development access roads' },
+      gal5_cap:      { es: 'Entorno natural de colinas verdes', en: 'Natural green hills environment' },
+      // Infrastructure
+      infra_tag:     { es: 'Infraestructura', en: 'Infrastructure' },
+      infra_title:   { es: 'Listo para Construir.<br>Todo Incluido.', en: 'Ready to Build.<br>All Inclusive.' },
+      infra_desc:    { es: 'Más de $259,700 USD invertidos entre 2007 y 2009. Cada lote tiene acceso directo a todos los servicios esenciales desde el primer día.', en: 'Over $259,700 USD invested between 2007 and 2009. Every lot has direct access to all essential services from day one.' },
+      infra1_title:  { es: 'Calles Adoquinadas', en: 'Cobblestone Streets' },
+      infra1_desc:   { es: 'Vías internas de 7 metros de ancho totalmente adoquinadas con andenes de 2.5m a cada lado. Construidas para durar décadas.', en: '7-meter wide internal roads fully paved with 2.5m sidewalks on each side. Built to last decades.' },
+      infra2_title:  { es: 'Agua Potable', en: 'Drinking Water' },
+      infra2_desc:   { es: 'Conexión individual a la red de ENACAL en cada lote. Tanques estratégicamente posicionados garantizan el suministro continuo.', en: 'Individual ENACAL water connection for each lot. Strategically positioned tanks ensure continuous supply.' },
+      infra3_title:  { es: 'Red Eléctrica Completa', en: 'Complete Power Grid' },
+      infra3_desc:   { es: 'Electrificación instalada en todo el desarrollo. Conexión directa al tendido eléctrico disponible desde el día uno.', en: 'Electrification installed throughout the development. Direct power line connection available from day one.' },
+      infra4_title:  { es: 'Caseta de Seguridad', en: 'Security Booth' },
+      infra4_desc:   { es: 'Caseta de entrada profesional con control de acceso vehicular y peatonal para total privacidad de los residentes.', en: 'Professional entry booth with vehicular and pedestrian access control for total resident privacy.' },
+      infra5_title:  { es: 'Drenaje Pluvial', en: 'Storm Drainage' },
+      infra5_desc:   { es: '16 pozos de absorción estratégicos para gestión efectiva de aguas pluviales. Ingeniería de primer nivel anti-inundaciones.', en: '16 strategic absorption wells for effective stormwater management. First-class flood prevention engineering.' },
+      infra6_title:  { es: 'Terreno Preparado', en: 'Prepared Land' },
+      infra6_desc:   { es: 'Descapote, corte, relleno, compactación y nivelación completados. Sin costos adicionales de preparación del sitio.', en: 'Clearing, cutting, filling, compaction and leveling completed. No additional site preparation costs.' },
+      // Pricing
+      pricing_tag:   { es: 'Inversión', en: 'Investment' },
+      pricing_title: { es: 'Precio por Vara Cuadrada', en: 'Price per Square Vara' },
+      pricing_desc:  { es: 'Precio uniforme por vara cuadrada para todos los lotes disponibles. Lotes desde 1,753 m² hasta 3,080 m².', en: 'Uniform price per square vara for all available lots. Lots from 1,753 m² to 3,080 m².' },
+      pricing_unit:  { es: 'por vara cuadrada (vrs²)', en: 'per square vara (vrs²)' },
+      pricing_from:  { es: 'Desde', en: 'From' },
+      pricing_to:    { es: 'Hasta', en: 'Up To' },
+      pricing_avail: { es: 'Disponibles', en: 'Available' },
+      pricing_note:  { es: 'Precios en dólares americanos · Escritura inmediata · Consultar opciones de financiamiento', en: 'Prices in US dollars · Immediate deed transfer · Ask about financing options' },
+      // Lots
+      lots_tag:      { es: 'Inventario de Lotes', en: 'Lot Inventory' },
+      lots_title:    { es: 'Selecciona Tu Lote Ideal', en: 'Select Your Ideal Lot' },
+      lots_desc:     { es: 'Haz clic en cualquier lote del mapa para ver especificaciones, precio y descargar su plano legal certificado.', en: 'Click any lot on the map to see specifications, price, and download its certified legal plan.' },
+      legend_available: { es: 'Disponible', en: 'Available' },
+      legend_sold:      { es: 'Vendido',    en: 'Sold' },
+      legend_committed: { es: 'Comprometido', en: 'Committed' },
+      legend_selected:  { es: 'Seleccionado', en: 'Selected' },
+      legend_mosaico:   { es: 'Descargar Plano Mosaico', en: 'Download Master Plan' },
+      panel_idle:       { es: 'Selecciona un lote en el mapa para ver especificaciones, precio y plano legal', en: 'Select a lot on the map to see specifications, price and legal plan' },
+      panel_price_lbl:  { es: 'Precio del Lote', en: 'Lot Price' },
+      panel_wa_btn:     { es: 'Consultar este Lote', en: 'Inquire About This Lot' },
+      panel_pdf_btn:    { es: 'Descargar Plano Legal', en: 'Download Legal Plan' },
+      panel_mosaico_btn:{ es: 'Ver Plano Mosaico General', en: 'View General Master Plan' },
+      // Table
+      table_tag:     { es: 'Inventario Completo', en: 'Complete Inventory' },
+      table_title:   { es: 'Todos los Lotes · Manzana 1', en: 'All Lots · Block 1' },
+      table_desc:    { es: 'Medidas oficiales según plano de lotificación firmado por Lic. Cat. José Manuel López Prado. Fecha: 01 de febrero de 2017.', en: 'Official measurements per subdivision plan signed by Lic. Cat. José Manuel López Prado. Date: February 1, 2017.' },
+      th_lot:        { es: 'Lote', en: 'Lot' },
+      th_area_m:     { es: 'Área (m²)', en: 'Area (m²)' },
+      th_area_v:     { es: 'Área (vrs²)', en: 'Area (vrs²)' },
+      th_price_v:    { es: '$/vrs²', en: '$/vrs²' },
+      th_total:      { es: 'Precio Total', en: 'Total Price' },
+      th_status:     { es: 'Estado', en: 'Status' },
+      th_plan:       { es: 'Plano Legal', en: 'Legal Plan' },
+      th_contact:    { es: 'Contacto', en: 'Contact' },
+      status_available: { es: 'Disponible', en: 'Available' },
+      status_sold:      { es: 'Vendido',    en: 'Sold' },
+      status_committed: { es: 'Comprometido', en: 'Committed' },
+      // Google Map
+      gmap_tag:      { es: 'Ubicación', en: 'Location' },
+      gmap_title:    { es: 'Encuéntranos en el Mapa', en: 'Find Us on the Map' },
+      gmap_desc:     { es: 'Comarca San Isidro de la Cruz Verde, Managua. A 3.2 km del Club Terraza y minutos del Intermezzo del Bosque.', en: 'Comarca San Isidro de la Cruz Verde, Managua. 3.2 km from Club Terraza and minutes from Intermezzo del Bosque.' },
+      // Legal
+      legal_tag:     { es: 'Seguridad Jurídica', en: 'Legal Security' },
+      legal_title:   { es: 'Tu Inversión,<br>Completamente Protegida', en: 'Your Investment,<br>Fully Protected' },
+      legal_desc:    { es: 'Santa Isabel cuenta con el más sólido respaldo legal del mercado. Compra con total tranquilidad y certeza jurídica.', en: 'Santa Isabel has the strongest legal backing in the market. Buy with total peace of mind and legal certainty.' },
+      legal1_title:  { es: 'Finca Registrada', en: 'Registered Property' },
+      legal1_desc:   { es: 'Finca No. 175,308 inscrita en el Registro Público de Managua, Tomo 2428, Folios 118/119. Historial registral ininterrumpido de 35 años.', en: 'Property No. 175,308 registered at the Managua Public Registry, Volume 2428, Folios 118/119. 35-year uninterrupted registry history.' },
+      legal2_title:  { es: 'Libre de Gravámenes', en: 'Lien-Free' },
+      legal2_desc:   { es: 'Propiedad con historial limpio y completamente libre de hipotecas, gravámenes o cargas legales de cualquier tipo.', en: 'Property with clean history, completely free of mortgages, liens or legal encumbrances of any kind.' },
+      legal3_title:  { es: 'Propietario Identificado', en: 'Identified Owner' },
+      legal3_desc:   { es: 'Industrial Agropecuaria Santa Isabel S.A. (RUC: J0310009243301). Empresa formalmente constituida y verificable ante cualquier registro.', en: 'Industrial Agropecuaria Santa Isabel S.A. (RUC: J0310009243301). Formally constituted company verifiable at any registry.' },
+      legal4_title:  { es: 'Historia Registral Clara', en: 'Clear Registry History' },
+      legal4_desc:   { es: 'Consolidada de Fincas originales 124,175 · 184,215 · 106,755. Trazabilidad completa y documentada del historial de la propiedad.', en: 'Consolidated from original properties 124,175 · 184,215 · 106,755. Full documented traceability of property history.' },
+      legal5_title:  { es: 'Planos Certificados', en: 'Certified Plans' },
+      legal5_desc:   { es: 'Plano de lotificación oficial firmado por Lic. Cat. José Manuel López Prado (JML010069). Coordenadas UTM WGS 84 (Zona 16N) certificadas.', en: 'Official subdivision plan signed by Lic. Cat. José Manuel López Prado (JML010069). Certified UTM WGS 84 (Zone 16N) coordinates.' },
+      legal6_title:  { es: 'Inversión Documentada', en: 'Documented Investment' },
+      legal6_desc:   { es: 'Más de $259,700 USD de infraestructura documentada (2007–2009). Descapote, corte, relleno, compactación y pavimentación completados.', en: 'Over $259,700 USD in documented infrastructure (2007–2009). Clearing, cutting, filling, compaction and paving completed.' },
+      // CTA
+      cta_title:     { es: '¿Listo para Invertir en <em style="color:var(--gold);font-style:italic">Santa Isabel</em>?', en: 'Ready to Invest in <em style="color:var(--gold);font-style:italic">Santa Isabel</em>?' },
+      cta_desc:      { es: 'Quedan solo 10 lotes disponibles. Escríbenos por WhatsApp y un asesor te contactará de inmediato con toda la información.', en: 'Only 10 lots remaining. Message us on WhatsApp and an advisor will contact you immediately with all the details.' },
+      cta_btn:       { es: 'Escribir por WhatsApp', en: 'Message on WhatsApp' },
+      cta_note:      { es: 'Respuesta inmediata', en: 'Immediate response' },
+      // Footer
+      footer_desc:   { es: 'Desarrollo residencial premium en las colinas de San Isidro, Managua. Lotes con infraestructura completa, respaldo legal sólido y entorno natural privilegiado. Finca No. 175,308 · Registro Público de Managua.', en: 'Premium residential development in the hills of San Isidro, Managua. Lots with complete infrastructure, solid legal backing and privileged natural environment. Property No. 175,308 · Managua Public Registry.' },
+      footer_nav:    { es: 'Navegación', en: 'Navigation' },
+      footer_contact:{ es: 'Contacto', en: 'Contact' },
+      footer_location:{ es: 'Ubicación', en: 'Location' },
+    };
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (i18n[key] && i18n[key][lang]) el.innerHTML = i18n[key][lang];
+      });
+      buildTable();
+      // Apply lot statuses to SVG
+      applyLotStatuses();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    // ═══════════════════════════════════════════
+    // HELPERS
+    // ═══════════════════════════════════════════
+    function fmtNum(n, dec=3) {
+      return n.toLocaleString('es-NI', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    }
+    function calcPrice(lot) {
+      return '$' + Math.round(lot.vrs * lot.priceVrs).toLocaleString('en-US');
+    }
+    function statusLabel(status) {
+      const key = 'status_' + status;
+      return (i18n[key] && i18n[key][currentLang]) || status;
+    }
+    function statusClass(status) {
+      return status; // 'available', 'sold', 'committed'
+    }
+
+    // ═══════════════════════════════════════════
+    // APPLY LOT STATUSES TO SVG MAP
+    // ═══════════════════════════════════════════
+    function applyLotStatuses() {
+      document.querySelectorAll('.lot-poly').forEach(poly => {
+        const id = parseInt(poly.dataset.lot);
+        const lot = lots.find(l => l.id === id);
+        if (!lot) return;
+        poly.classList.remove('sold', 'committed', 'active');
+        if (lot.status === 'sold') poly.classList.add('sold');
+        else if (lot.status === 'committed') poly.classList.add('committed');
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // BUILD TABLE
+    // ═══════════════════════════════════════════
+    function buildTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      lots.forEach(lot => {
+        const pdfLink = lot.pdf
+          ? `<a class="td-link-pdf" href="${lot.pdf}" download="Lote-${lot.id}-Santa-Isabel.pdf">⬇ ${currentLang==='es'?'Descargar':'Download'}</a>`
+          : `<span class="td-link-pdf na">${currentLang==='es'?'No disponible':'N/A'}</span>`;
+        const total = calcPrice(lot);
+        const badge = `<span class="status-badge ${statusClass(lot.status)}">${statusLabel(lot.status)}</span>`;
+        const contactLabel = currentLang==='es' ? 'Consultar →' : 'Inquire →';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="td-lot-num">${currentLang==='es'?'Lote':'Lot'} ${lot.id}</td>
+          <td>${fmtNum(lot.area)} m²</td>
+          <td>${fmtNum(lot.vrs)} vrs²</td>
+          <td style="color:#C9A84C;font-weight:600">$${lot.priceVrs}</td>
+          <td style="color:#C9A84C;font-weight:700">${total}</td>
+          <td>${badge}</td>
+          <td>${pdfLink}</td>
+          <td><a class="td-link" href="https://wa.me/50588820218?text=${encodeURIComponent(currentLang==='es'?`Hola, me interesa el Lote ${lot.id} de Residencial Santa Isabel (${lot.area.toFixed(3)} m²). ¿Podría darme más información?`:`Hello, I'm interested in Lot ${lot.id} at Residencial Santa Isabel (${lot.area.toFixed(3)} m²). Could you give me more information?`)}" target="_blank">${contactLabel}</a></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // INTERACTIVE MAP
+    // ═══════════════════════════════════════════
+    const polys       = document.querySelectorAll('.lot-poly');
+    const panelIdle   = document.getElementById('panelIdle');
+    const panelDetail = document.getElementById('panelDetail');
+
+    polys.forEach(poly => {
+      poly.addEventListener('click', () => {
+        const id  = parseInt(poly.dataset.lot);
+        const lot = lots.find(l => l.id === id);
+        if (!lot) return;
+
+        polys.forEach(p => p.classList.remove('active'));
+        if (lot.status !== 'sold') poly.classList.add('active');
+
+        panelIdle.style.display = 'none';
+        panelDetail.classList.add('show');
+
+        document.getElementById('pdTag').textContent   = `${currentLang==='es'?'Lote':'Lot'} ${lot.id} · Manzana 1`;
+        document.getElementById('pdAreaM').textContent = fmtNum(lot.area) + ' m²';
+        document.getElementById('pdAreaV').textContent = fmtNum(lot.vrs)  + ' vrs²';
+        document.getElementById('pdPrice').textContent = calcPrice(lot);
+
+        const priceNote = currentLang==='es'
+          ? `$${lot.priceVrs}/vrs² · ${lot.status==='available'?'Escritura inmediata':lot.status==='committed'?'Comprometido — consultar':'Vendido'}`
+          : `$${lot.priceVrs}/vrs² · ${lot.status==='available'?'Immediate deed transfer':lot.status==='committed'?'Committed — inquire':'Sold'}`;
+        document.getElementById('pdPriceNote').textContent = priceNote;
+
+        // Status badge in panel
+        const pdAvail = document.getElementById('pdAvail');
+        pdAvail.className = 'pd-avail ' + statusClass(lot.status);
+        pdAvail.textContent = statusLabel(lot.status);
+
+        const msg = encodeURIComponent(currentLang==='es'
+          ? `Hola, me interesa el Lote ${lot.id} de Residencial Santa Isabel (${lot.area.toFixed(3)} m², ${calcPrice(lot)}). ¿Podría darme más información?`
+          : `Hello, I'm interested in Lot ${lot.id} at Residencial Santa Isabel (${lot.area.toFixed(3)} m², ${calcPrice(lot)}). Could you give me more information?`
+        );
+        document.getElementById('pdWaBtn').href = `https://wa.me/50588820218?text=${msg}`;
+
+        const pdfBtn = document.getElementById('pdPdfBtn');
+        if (lot.pdf) {
+          pdfBtn.href = lot.pdf;
+          pdfBtn.download = `Lote-${lot.id}-Santa-Isabel.pdf`;
+          pdfBtn.classList.remove('disabled');
+        } else {
+          pdfBtn.removeAttribute('href');
+          pdfBtn.removeAttribute('download');
+          pdfBtn.classList.add('disabled');
+        }
+      });
+    });
+
+    // ═══════════════════════════════════════════
+    // LIGHTBOX
+    // ═══════════════════════════════════════════
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ═══════════════════════════════════════════
+    // SCROLL ANIMATIONS
+    // ═══════════════════════════════════════════
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 0.08 + 's';
+      observer.observe(el);
+    });
+
+    // ═══════════════════════════════════════════
+    // NAV SHADOW
+    // ═══════════════════════════════════════════
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.5)' : 'none';
+    });
+
+    // ═══════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════
+    buildTable();
+    applyLotStatuses();
+  </script>
+</body>
+</html>
